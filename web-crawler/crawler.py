@@ -22,16 +22,20 @@ def union(p,q,depth):
             p.append([e,depth+1])
 
 def add_to_index(index,keyword,url):
-    for entry in index:
-        if entry[0] == keyword:
-            entry[1].append(url)
-            return
-    index.append([keyword,[url]])
+    if keyword in index:
+	index[keyword].append(url)
+    else:
+	index[keyword] = [url]
 
 def add_page_to_index(index,url,content):
     keywords = content.split()
     for keyword in keywords:
         add_to_index(index,keyword,url)
+
+def lookup(index,keyword):
+    if keyword in index:
+	return index[keyword]
+    return None
 
 def get_all_links(page):
     links = []
@@ -47,7 +51,7 @@ def get_all_links(page):
 def crawl_web(seed,maxdepth):
     tocrawl = [[seed,0]]
     crawled = []
-    index = []
+    index = {}
     while tocrawl:
         page,depth = tocrawl.pop()
         if page not in crawled and depth <= maxdepth:
