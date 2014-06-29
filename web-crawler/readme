@@ -1,0 +1,8 @@
+*bk 4/4
+Started dev for the new search engine.
+status - progressed to crawl the web naively and collect all the links
+
+*bk 4/5
+completed - using hash for building indexes
+learnt building hash functions and hash table.
+learnt the usage of in-built dictionary and they work great in place of the list
